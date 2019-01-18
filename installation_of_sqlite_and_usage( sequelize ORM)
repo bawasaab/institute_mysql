@@ -1,0 +1,52 @@
+As we are using sequelize ORM it supports multiple databases.
+kepp in mind we should have used sequelize ORM for database operations in our project and for that sequelize and sequelize-cli package installed in our project only then we can switch from one database to another.
+so in order to change from one database to another without changing the whole code in project.
+
+
+open existing project folder in Vscode or in any of editor:
+
+open cmd console to install sqlite3 database shell:
+sudo apt-get install sqlite3
+
+===> we first need to install package sqlite3 using npm install sqlite3 --save in project as dependency
+then create sqlite3 database file in root directory of project. sqlite3 has a database file named for example: databasename.extension  i.e our databasename is institute and extension is sqlite3. extension may vary from version to version.
+
+Database Creation: for creating database we will go to our project folder using command line or bydefault if we open project using vscode ther we automatically there in root directory  of project.
+connect to the database fire below command
+sqlite3 institute.sqlite3 // Here institute is our databasename and .sqlite3 is extension.
+
+:::bydefault when we create database file it is not shown ,so in order to see that 
+we type command  .databases further then database file will get visible to us in project root folder as we have created file there.
+
+example: sqlite3 institute.sqlite3
+	SQLite version 3.11.0 2016-02-15 17:29:24
+	Enter ".help" for usage hints.
+	sqlite> .databases
+	seq  name             file
+	---  ---------------  ----------------------------------------------------------
+	0    main             /home/wegile/institute/institute.sqlite3
+	sqlite>
+
+==> now go to config.json file and just type dialect : sqlite ,storage : /institute.sqite3 and remove all other parameters username, host,password and database from config.json file.
+example :
+{
+    "development": {
+        "dialect": "sqlite",
+        "storage": "./institute.sqlite3"
+    },
+    "test": {
+        "dialect": "sqlite",
+        "storage": ":memory"
+    },
+    "production": {
+        "dialect": "sqlite",
+        "storage": "./institute.sqlite3"
+    }
+}
+==> now download DB browser for SQlite (which is a GUI for Sqlite) from any of browser.
+==>  now npm start.
+==> then run migrations using command:  node_modules/.bin/sequelize db:migrate. if we run migrations using command- sequelize db:migrate then it may give you error.
+==> and then run seeders if u wish using : node_modules/.bin/sequelize db:seed:all
+
+NOTE : Whenever we want to see created datbases or tables or new created database go to  project folder in commandline and type  sqlite3 dbname.sqlite3(example: sqlite3 institute.sqlite3) then we enter into it only then .database or .tables command will run. And databases and tables-if exist get visualized.
+
