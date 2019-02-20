@@ -240,28 +240,27 @@ module.exports = class CommonController {
 
             let out_required_keys = this.get_required_keys(out_expected_keys);
             if (out_required_keys.err.length) {
-                return { err: out_required_keys };
+                return out_required_keys;
             }
 
             let out_not_null_keys = this.get_not_null_keys(out_required_keys.data);
             
             if (out_not_null_keys.err.length) {
-                return { err: out_not_null_keys };
+                return out_not_null_keys;
             }
 
-            out_form_validations = this.validate_form( out_required_keys.data );
+            // out_form_validations = this.validate_form( out_required_keys.data );
+            out_form_validations = out_not_null_keys;
         } else {
-
-            let out_required_keys = {};
-            out_required_keys.data = out_expected_keys;
-            out_form_validations = this.validate_form( out_required_keys.data );
+            out_form_validations = {
+                err: [],
+                data: out_expected_keys
+            };
         }
 
         if (out_form_validations.err.length) {
-
             return out_form_validations;
-        } else {
-            
+        } else {            
             return out_form_validations;
         }
     }
