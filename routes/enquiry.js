@@ -28,7 +28,7 @@ router.delete('/:id', [
     enquiryCtrl.hardDelete
 ]);
 
-router.delete("/softdelete/:1d", [
+router.delete("/softdelete/:id", [
     enquiryCtrl.softDelete
 ]);
 
