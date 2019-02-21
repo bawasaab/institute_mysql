@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var enquiryCtrl = require('../controllers/enquiry_controller');
+var authCntrl = require('../controllers/auth_controller');
 
 /* GET users listing. */
 // router.get('/', function (req, res, next) {
@@ -9,6 +10,7 @@ var enquiryCtrl = require('../controllers/enquiry_controller');
 // });
 
 router.get('/', [
+    authCntrl.verifyToken,
     enquiryCtrl.fetchAll
 ]);
 
