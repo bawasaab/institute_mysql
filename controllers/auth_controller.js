@@ -13,7 +13,7 @@ var signin = ( req, res, next ) => {
 
                 res.status(200).send({ err: ["Record not found!"] });
             } else {
-                
+
                 let userData = {
                     "id": result.id,
                     "firstName": result.firstName,
@@ -51,6 +51,7 @@ var verifyToken = (req, res, next) => {
                 res.sendStatus(403);
             }else{
                 
+                req.authData = authData;
                 //call next middleware
                 next();
             }
