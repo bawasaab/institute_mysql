@@ -48,7 +48,7 @@ var verifyToken = (req, res, next) => {
         jwt.verify(req.token, 'SuperSecRetKey', (err, authData)=>{
 
             if(err){
-                res.sendStatus(403);
+                res.status(403).send({ err: err });
             }else{
                 
                 req.authData = authData;
