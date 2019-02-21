@@ -13,8 +13,15 @@ var signin = ( req, res, next ) => {
 
                 res.status(200).send({ err: ["Record not found!"] });
             } else {
+                
+                let userData = {
+                    "id": result.id,
+                    "firstName": result.firstName,
+                    "lastName": result.lastName,
+                    "email": result.email
+                };
 
-                jwt.sign({result},'SuperSecRetKey', { expiresIn: 60 * 60 }, (err, token) => {
+                jwt.sign({userData},'SuperSecRetKey', { expiresIn: 60 * 60 }, (err, token) => {
                     res.status(200).send({ err: [], token: 'bearer '+ token });
                 });
             }
