@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var enquiryRouer = require('./routes/enquiry');
+var newEnquiryRouer = require('./routes/new_enquiry');
 var authRouter = require('./routes/auth');
 const jwt = require('jsonwebtoken');
 
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use( '/enquiry', enquiryRouer );
+app.use( '/newEnquiry', newEnquiryRouer );
 app.use( '/auth', authRouter );
 
 // catch 404 and forward to error handler
