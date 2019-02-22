@@ -1,0 +1,10 @@
+{
+    "_comment": [
+        "1 stands for Super admin",
+        "2 stands for admin",
+        "3 stands for user",
+        "4 stands for Super student"
+    ],
+    
+    "/leads/": [1]
+}
