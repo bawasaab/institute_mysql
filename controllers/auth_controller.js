@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models').User;
 const accesses = require('../config/access');
 
-module.exports = class LeadController {
+module.exports = class AuthController {
 
     constructor(){}
 
